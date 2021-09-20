@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Media and Ads MicroService",
+    "description": "MicroService of Media and Ads in the system",
+    "license": {
+      "name": "Leewayhertz",
+      "url": "http://leewayhertz.com"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/content": {
+      "post": {
+        "description": "Add content",
+        "summary": "adds an content",
+        "tags": ["content"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "subCategory",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "superCategory",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "{CAT,DOG}"
+          },
+          {
+            "name": "contentType",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "{VIDEO,PHOTO,DOCUMENT}"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "{ACTIVE,INACTIVE}"
+          },
+          {
+            "name": "ratePerView",
+            "in": "formData",
+            "required": true,
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "description": "Get content details",
+        "summary": "Fetch a content details with _id",
+        "tags": ["content"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "Update content details",
+        "summary": "Update a content details with _id",
+        "tags": ["content"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "title",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "description",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "category",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "subCategory",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "superCategory",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "{CAT,DOG}"
+          },
+          {
+            "name": "contentType",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "{VIDEO,PHOTO,DOCUMENT}"
+          },
+          {
+            "name": "status",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "{ACTIVE,INACTIVE}"
+          },
+          {
+            "name": "ratePerView",
+            "in": "formData",
+            "required": true,
+            "type": "number",
+            "description": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/content-list": {
+      "get": {
+        "description": "Get contents listing",
+        "summary": "Fetch contents listing",
+        "tags": ["content"],
+        "produces": ["application/json"],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Media": {
+      "type": "object",
+      "title": "Content Schema",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "superCategory": {
+          "type": "string",
+          "enum": ["DOG", "CAT"]
+        },
+        "category": {
+          "type": "string"
+        },
+        "subCategory": {
+          "type": "string"
+        },
+        "ratePerView": {
+          "type": "number"
+        },
+        "startDate": {
+          "type": "number"
+        },
+        "endDate": {
+          "type": "number"
+        },
+        "isAdvertisement": {
+          "type": "boolean"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ACTIVE", "INACTIVE"]
+        },
+        "contentType": {
+          "type": "string",
+          "enum": ["VIDEO", "PHOTO", "DOCUMENT"]
+        },
+        "advertiser": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "_id": {
+              "type": "string"
+            }
+          }
+        },
+        "product": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "media": {
+              "type": "string"
+            },
+            "_id": {
+              "type": "string"
+            }
+          }
+        },
+        "addedOn": {
+          "type": "number"
+        },
+        "modifiedOn": {
+          "type": "number"
+        }
+      },
+      "required": []
+    }
+  }
+}
